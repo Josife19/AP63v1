@@ -12,9 +12,29 @@ class GestorPublicacion {
     public function anyadir ($publicacion) {
         $_SESSION['publicaciones'][] = $publicacion;
     }
-    public function listar() {
-        return $_SESSION['publicaciones'];
+   
+    
+
+      public function listarLibros() {
+        $libros = [];
+        for ($i=0;$i<count($_SESSION['publicaciones']);$i++){
+            if(get_class($_SESSION['publicaciones'][$i]) == "Libro"){
+                $libros[] = $_SESSION['publicaciones'][$i];
+            }
+      }
+      return $libros;
     }
+
+    public function listarRevistas() {
+        $revistas = [];
+        for ($i=0;$i<count($_SESSION['publicaciones']);$i++){
+            if(get_class($_SESSION['publicaciones'][$i]) == "Revista"){
+                $revistas[] = $_SESSION['publicaciones'][$i];
+            }
+      }
+      return $revistas;
+    }
+
     public function buscar($isbn){
         foreach($_SESSION['publicaciones'] as $publicacion){
             if($publicacion->getIsbn() == $isbn){

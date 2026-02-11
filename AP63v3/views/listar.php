@@ -19,7 +19,7 @@
         <th>Acciones</th>
     </tr>
 
-    <?php foreach ($publicaciones as $p): ?>
+    <?php foreach ($librosAcortados as $p): ?>
         <?php if (get_class ($p) == "Libro"): ?>
     <tr>
                 <td><?=$p->getIsbn(); ?></td>
@@ -41,6 +41,9 @@
     <?php endforeach; ?>
 </table>
 
+<?php for ($i = 1; $i <= $totalPaginasLibros; $i++): ?>
+    <a href='index.php?accion=index&pActualLibros=<?= $i ?>'><?= $i ?></a>
+<?php endfor; ?>
 <h3> REVISTAS </h3>
 
 <table border="1" cellpadding="10">
@@ -52,7 +55,7 @@
         <th>Acciones</th>
     </tr>
 
-<?php foreach ($publicaciones as $p): ?>
+<?php foreach ($revistasAcortadas as $p): ?>
         <?php if (get_class ($p) == "Revista"): ?>
     <tr>
                 <td><?=$p->getIsbn(); ?></td>
@@ -73,3 +76,7 @@
         <?php endif; ?>          
     <?php endforeach; ?>
 </table>
+
+<?php for ($i = 1; $i <= $totalPaginasRevistas; $i++): ?>
+    <a href='index.php?accion=index&pActualRevistas=<?= $i ?>'><?= $i ?></a>
+<?php endfor; ?>

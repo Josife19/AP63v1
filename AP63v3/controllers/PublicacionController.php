@@ -9,8 +9,21 @@ public function __construct($gestor) {
 }
 
 public function index() {
-    $publicaciones = $this->gestor->listar();
+    $libros = $this->gestor->listarLibros();
+    $totalLibros = count ($libros);
+    $librosPorPagina = 3;
+    $totalPaginasLibros = ceil($totalLibros / $librosPorPagina);
+    $paginaActualLibros = $_GET['pActualLibros'] ?? 1;
+    $librosAcortados = array_slice($libros, ($paginaActualLibros - 1) * $librosPorPagina, $librosPorPagina);
+
+      $revistas = $this->gestor->listarRevistas();
+    $totalRevistas = count ($revistas);
+    $revistasPorPagina = 3;
+    $totalPaginasRevistas = ceil($totalRevistas / $revistasPorPagina);
+    $paginaActualRevistas = $_GET['pActualRevistas'] ?? 1;
+    $revistasAcortadas = array_slice($revistas, ($paginaActualRevistas - 1) * $revistasPorPagina, $revistasPorPagina);
     include "views/listar.php";
+    
 }
 
     public function crear() {
